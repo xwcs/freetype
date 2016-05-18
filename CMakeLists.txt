@@ -334,6 +334,19 @@ add_library(freetype
   ${BASE_SRCS}
 )
 
+#########
+# 3D Informatica Patch for shared lib compiling: Begin
+#########
+if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+else()
+   # Apply Debug configuration compilation/linking flags.
+   set(CMAKE_CXX_FLAGS_DEBUG ${CMAKE_CXX_FLAGS_DEBUG} "-fPIC")
+   # Apply Release configuration compilation/linking flags.
+   set(CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE} "-fPIC")
+endif()
+#########
+# 3D Informatica Patch for shared lib compiling: End
+#########
 
 if (BUILD_SHARED_LIBS)
   set_target_properties(freetype PROPERTIES
